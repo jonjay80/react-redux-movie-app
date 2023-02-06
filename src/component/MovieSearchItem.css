@@ -1,0 +1,26 @@
+.card.movieSearchListItem {
+    width: 15%;
+    float: left;
+    margin: 10px;
+    color: black;
+    height: 600px;
+}
+
+.card-text.movieSearchListItem {
+    font-size: 18px;
+    padding: 5px;
+    text-align: justify;
+}
+
+.add-box-shadow.movieSearchListItem {
+    box-shadow: 0 0 10px white;
+}
+
+.addDropDown.movieSearchListItem {
+    position: absolute;
+    align-self: center;
+    width: 100%;
+    background: rgba(255,255,255, .7);
+    text-align: center;
+    bottom: 0;
+}

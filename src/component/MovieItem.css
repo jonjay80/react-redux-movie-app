@@ -1,0 +1,25 @@
+.card.movieListItem {
+    width: 15%;
+    float: left;
+    margin: 10px;
+    color: black;
+    height: 600px;
+}
+
+.card-text.movieListItem {
+    padding: 1px;
+    text-align: justify;
+}
+
+.add-box-shadow.movieListItem {
+    box-shadow: 0 0 10px white;
+}
+
+.addDropDown.movieListItem {
+    position: absolute;
+    align-self: center;
+    width: 100%;
+    background: rgba(255,255,255, .7);
+    text-align: center;
+    bottom: 0;
+}
