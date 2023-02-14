@@ -23,11 +23,11 @@ const MainPage = () => {
 
   return (
     <>
-      <div className="toast-container position-fixed bottom-0 end-0 p-3">
+      {/* <div className="toast-container position-fixed bottom-0 end-0 p-3">
         {toasts.map((toast) => (
           <ToastMessage toast={toast} key={toast.id} />
         ))}
-      </div>
+      </div> */}
       <MovieList />
       <br /> <br />
       <form onSubmit={searchForMovies}>
