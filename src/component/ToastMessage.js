@@ -8,6 +8,7 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 const ToastMessage = (payload) => {
   const dispatch = useDispatch();
   const toast = payload.toast;
+
   return (
     <div className="">
       <div
@@ -29,7 +30,9 @@ const ToastMessage = (payload) => {
             </button>
           </div>
         </div>
-        <div className="toast-body">Successfully added {toast.title}.</div>
+        {toast.message === "added" && <div className="toast-body">Added {toast.title} to the favorites list.</div>}
+        {toast.message === "deleted" && <div className="toast-body">Deleted {toast.title} from the favorites list.</div>}
+        {toast.message === "duplicate" && <div className="toast-body">{toast.title} is already in the favorites list.</div>}
       </div>
     </div>
   );

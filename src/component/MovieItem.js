@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { removeMovieFromFavorites} from "../redux/movieSlice"
+import { removeMovieFromFavorites } from "../redux/movieSlice"
+import { addToast } from "../redux/toastSlice";
 import "./MovieItem.css";
 
 const MovieItem = (movie) => {
@@ -10,6 +11,7 @@ const MovieItem = (movie) => {
 
   const handleRemoveMovieFromFavorites = () => {
     dispatch(removeMovieFromFavorites({id: el.id}));
+    dispatch(addToast({...el, message: "deleted"}));
   };
 
   const el = movie.movie;

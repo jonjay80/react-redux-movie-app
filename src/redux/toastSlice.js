@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
 const toastSlice = createSlice({
   name: "toasts",
   initialState: [
@@ -19,16 +20,38 @@ const toastSlice = createSlice({
       video: false,
       vote_average: 6.6,
       vote_count: 6157,
+      message: "added",
+      toastId: Math.random() * 1000000,
     },
   ],
   reducers: {
     addToast: (state, action) => {
-      state.push(action.payload);
+      let alreadyInList = false;
+      let tempState = state.map((toast) => {
+        if (toast.id === action.payload.id && toast.toastId === action.payload.toastId) {
+          alreadyInList = true;
+          return {
+            ...toast,
+            message: "duplicate",
+            toastId: Math.random() * 1000000,
+          };
+        }
+        return {
+          ...toast,
+        };
+      });
+      if (!alreadyInList) {
+        const newToast = {
+          ...action.payload,
+          message: "added",
+          toastId: Math.random() * 1000000,
+        };
+        return [...tempState, newToast];
+      }
+      return [...tempState];
     },
     removeToast: (state, action) => {
-      return state.filter(
-        (toast) => toast.id !== action.payload.id
-      );
+      return state.filter((toast) => toast.toastId !== action.payload.toastId);
     },
   },
   extraReducers: {},

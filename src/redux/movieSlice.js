@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const movieSlice = createSlice({
   name: "movies",
   initialState: [
@@ -20,6 +19,7 @@ const movieSlice = createSlice({
       video: false,
       vote_average: 6.6,
       vote_count: 6157,
+      message: "added",
     },
     {
       adult: false,
@@ -37,6 +37,7 @@ const movieSlice = createSlice({
       video: false,
       vote_average: 6.4,
       vote_count: 213,
+      message: "added",
     },
     {
       adult: false,
@@ -54,6 +55,7 @@ const movieSlice = createSlice({
       video: false,
       vote_average: 5.9,
       vote_count: 4260,
+      message: "added",
     },
     {
       adult: false,
@@ -71,6 +73,7 @@ const movieSlice = createSlice({
       video: false,
       vote_average: 5.8,
       vote_count: 4496,
+      message: "added",
     },
     {
       adult: false,
@@ -88,6 +91,7 @@ const movieSlice = createSlice({
       video: false,
       vote_average: 7.3,
       vote_count: 819,
+      message: "added",
     },
     {
       adult: false,
@@ -105,24 +109,35 @@ const movieSlice = createSlice({
       video: false,
       vote_average: 4.3,
       vote_count: 1832,
+      message: "added",
     },
   ],
   reducers: {
     addMovieToFavorites: (state, action) => {
+      let alreadyInList = false;
+      state.map((movie) => {
+        if (movie.id === action.payload.id) {
+          alreadyInList = true;
+          return { ...movie, message: "duplicate" };
+        }
+        return movie;
+      });
+      if (!alreadyInList) {
         const newMovie = action.payload;
-        state.push(newMovie);
-
+        state.push({ ...newMovie, message: "added" });
+      }
     },
-    removeMovieFromFavorites: (state,action) => {
-        console.log(action.payload.id);
-        return state.filter((movie) => movie.id !== action.payload.id);
-    }
+    removeMovieFromFavorites: (state, action) => {
+      return state.filter((movie) => movie.id !== action.payload.id);
+    },
+    checkMovieExistsInList: (state, action) => {
+      return state.filter((movie) => movie.id === action.payload.id);
+    },
   },
-  extraReducers: {
-
-  }
+  extraReducers: {},
 });
 
-export const { addMovieToFavorites, removeMovieFromFavorites } = movieSlice.actions;
+export const { addMovieToFavorites, removeMovieFromFavorites, checkMovieExistsInList } =
+  movieSlice.actions;
 
 export default movieSlice.reducer;

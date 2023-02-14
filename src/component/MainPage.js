@@ -12,7 +12,7 @@ const MainPage = () => {
   const searchForMovies = async (event) => {
     event.preventDefault();
     const response = await fetch(
-      "https://api.themoviedb.org/3/search/movie?api_key=3482aa97839ba50ed268dd3f53c710d3&query=" +
+      `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=` +
         movieNameInput
     );
     if (response.ok) {
